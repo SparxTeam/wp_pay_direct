@@ -16,7 +16,7 @@
 		        url : wppd_ajax.ajaxurl,
 		        data : {action: "wppd_load_form" },
 		        success: function(response) {
-		        	alert(response);
+		        	//alert(response);
 		        	$("#source").val( response );
 		       	}
 		        
@@ -32,13 +32,13 @@
 		$(".pay-sub").on('click', function(){
 			
 			var form_source = genrateSource();
-			
+			var form_builder_source = $('#target').html();
 			$.ajax({
 		        type : "post",
 		        url : wppd_ajax.ajaxurl,
-		        data : {action: "wppd_update_form", 'form_source' : form_source },
+		        data : {action: "wppd_update_form", 'form_source' : form_source, 'form_builder_source' : form_builder_source },
 		        success: function(response) {
-		        	alert(response);
+		        	//alert(response);
 		        	
 		       	}
 		        
