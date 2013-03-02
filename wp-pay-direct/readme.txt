@@ -10,7 +10,7 @@ Here is a short description of the plugin.  This should be no more than 150 char
 
 == Warning ==
 
-This plugin is still in development phase and not tested properly, please avoit using it until we confirm.
+This plugin is still in development phase and not tested properly, please avoid using it until we confirm.
 
 == Description ==
 

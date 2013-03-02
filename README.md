@@ -5,4 +5,4 @@ WP Pay Direct is a WordPress plugin for receiving payments via different payment
 
 ==Warning==
 
-This plugin is still in development phase and not tested properly, please avoit using it until we confirm.
+This plugin is still in development phase and not tested properly, please avoid using it until we confirm.
