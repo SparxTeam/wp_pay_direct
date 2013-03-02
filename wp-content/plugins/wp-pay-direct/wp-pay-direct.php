@@ -218,7 +218,7 @@ class WpPayDirect {
 				'attr2' => 'bar'
 		), $atts));
 		// you can now access the attribute values using $attr1 and $attr2
-	   return "<b>WP Pay direct</b> Plugin has been intiated";
+	   return get_option('wp_pay_direct_form');
 	}
 	
 	/*--------------------------------------------*
@@ -271,12 +271,10 @@ class WpPayDirect {
 		if( isset( $_REQUEST ) ){
 			
 			$form_source	=	stripslashes( $_REQUEST[ 'form_source' ] );
-			$form_builder_source	=	stripslashes( $_REQUEST[ 'form_builder_source' ] );
+			
 			// Updates form
-			$formUpdate	=	update_option( 'wp_pay_direct_form', $form_source );
-			// Updates form source
-			$formBuildertUpdate	=	update_option( 'wp_pay_direct_form_builder', $form_builder_source );
-			if( $formUpdate &&  $formBuildertUpdate){
+			$isUpdate	=	update_option( 'wp_pay_direct_form', $form_source );
+			if( $isUpdate ){
 				echo "true";
 			} else {
 				echo "false";
@@ -343,9 +341,6 @@ class WpPayDirect {
 						);
 			// Form
 			add_option( 'wp_pay_direct_form', '');
-			
-			// Form Builder
-			add_option('wp_pay_direct_form_builder','<div id="legend" class="component" rel="popover" title="Form Title" trigger="manual" data-content="<form class=\'form\'><div class=\'controls\'>   <label class=\'control-label\'>Title</label><input class=\'input-large\' type=\'text\' name=\'title\' id=\'text\'><hr/><button class=\'btn btn-info\'>Save</button><button class=\'btn btn-danger\'>Cancel</button></div></form>"><legend class="valtype" data-valtype="text">Form Name</legend></div>');
 	}
 	
 	
@@ -469,7 +464,18 @@ class WpPayDirect {
 				            <hr>
 				            <div id="build">
 				              	<form id="target" class="form-horizontal">
-				                  <?php  echo get_option( 'wp_pay_direct_form_builder' ); ?>
+				                  <div id="legend" class="component" rel="popover" title="Form Title" trigger="manual"
+				                    data-content="
+				                    <form class='form'>
+				                      <div class='controls'>
+				                        <label class='control-label'>Title</label> <input class='input-large' type='text' name='title' id='text'>
+				                        <hr/>
+				                        <button class='btn btn-info'>Save</button><button class='btn btn-danger'>Cancel</button>
+				                      </div>
+				                    </form>">
+				                    <legend class="valtype" data-valtype="text">Form Name</legend>
+				                  </div>
+				                  <?php  echo get_option( 'wp_pay_direct_form' ); ?>
 				              	</form>
 				            </div>
 				          </div>
