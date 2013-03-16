@@ -1,1 +1,17 @@
+
 /* This stylesheet is used to style the public view of the plugin. */
+.control-label{ float:left; width:184px;}
+.input-prepend .email{ width:180px;}
+.input-prepend #actualamount{ width:90px;}
+.fees{ margin-top:10px;}
+.input-prepend input{ width:300px;}
+.input-prepend{ padding-bottom:6px !important;}
+.control-group component .control{ margin-bottom:10px !important;}
+.input-xlarge{ width:300px;}
+textarea{ width:300px; height:100px; margin-bottom:11px;}
+.controls{ margin-top:2px; margin-bottom:2px; }
+.input-xlarge option{ height:30px; width:300px;}
+ .input-prepend input[type="submit"]{ margin-top:20px;}
+ .control-group{  overflow:hidden;}
+ 
+ .entry-content p, .entry-summary p, .comment-content p, .mu_register p { margin: 0px 0px 0px !important; margin-top:8px !important;}
