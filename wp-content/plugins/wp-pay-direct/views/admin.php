@@ -2,133 +2,136 @@
 //<!-- This file is used to markup the administration form of the plugin. -->
 
 class WpPayDirectAdmin {
-	
-/*-------------------------------------------*
+
+	/*-------------------------------------------*
 	 * 		Page handler (menu) functions
 	 *-------------------------------------------*/
-	
+
 	function wp_pay_direct_settings_page( $args ) {
-	
+
 		// Update
 		if( isset( $_POST['updateoption'] ) ){
-				
+
 			$paypal_name 	 = 	$_POST[ 'wp_pay_direct_user_defined_name' ];
 			$paypal_business = 	$_POST[ 'wp_pay_direct_business' ];
 			$paypal_mode 	 = 	$_POST[ 'wp_pay_direct_pay_mod' ];
-				
+
 			$get_options = array( 'wp_pay_direct_user_defined_name' => $paypal_name,
 					'wp_pay_direct_business' => $paypal_business,
 					'wp_pay_direct_pay_mod' => $paypal_mode
 			);
-				
+
 			update_option( 'wp_pay_direct_options', $get_options );
-				
+
 		}
-	
-	
-	
+
+
+
 		// Settings
 		$wppd_options = get_option( 'wp_pay_direct_options' );
-	
+
 		$wp_pay_direct_user_defined_name	=	$wppd_options[ 'wp_pay_direct_user_defined_name' ]  ? $wppd_options[ 'wp_pay_direct_user_defined_name' ] : '';
 		$wp_pay_direct_business				=	$wppd_options[ 'wp_pay_direct_business' ]  			? $wppd_options[ 'wp_pay_direct_business' ] 		 : '';
 		$wp_pay_direct_pay_mod				=	$wppd_options[ 'wp_pay_direct_pay_mod' ] 			? $wppd_options[ 'wp_pay_direct_pay_mod' ] 			 : '';
-	
+
 		?>
-				<div class="wrap">
-				<?php screen_icon('wp-pay-direct'); ?>
-				<h2>WP Pay Direct Settings</h2>
-				<div class="postbox">
-				
-					<h3 class="wpdp_box_header">PayPal Payments Standard 2.0 Settings</h3>
-					<div class="inside">
-						<form action="" method="post">
-							<table class="form-table">
-								<tbody>
-									<tr>
-							           <td>Display Name</td>
-										<td>
-											<input type="text" name="wp_pay_direct_user_defined_name" value="<?php echo $wp_pay_direct_user_defined_name; ?>"><br>
-											<small>The text that people see when making a purchase.</small>
-										</td>
-									</tr>
-					
-								  <tr>
-								      <td>Username:</td><!-- sanjay_1336725211_biz@sparxtechnologies.com -->
-								      <td>
-								      		<input type="text" size="40" name="wp_pay_direct_business" value="<?php echo $wp_pay_direct_business;?>" >
-								      </td>
-								  </tr>
-								  <tr>
-								  	<td></td>
-								  	<td colspan="1">
-									  	<span class="wpscsmall description">
-									  		This is your PayPal email address.
-									  	</span>
-								  	</td>
-								  </tr>
-		
-		  						<tr>
-								      <td>Account Type:</td>
-								      <td>
-										<select name="wp_pay_direct_pay_mod">
-											<option value="https://www.paypal.com/cgi-bin/webscr" <?php if( $wp_pay_direct_pay_mod === 'https://www.paypal.com/cgi-bin/webscr' ) {?> selected="selected" <?php } ?>>Live Account</option>
-											<option value="https://www.sandbox.paypal.com/cgi-bin/webscr" <?php if( $wp_pay_direct_pay_mod === 'https://www.sandbox.paypal.com/cgi-bin/webscr' ) {?> selected="selected" <?php } ?> >Sandbox Account</option>
-										</select>
-									  </td>
-								</tr>
-								  <tr>
-									 <td colspan="1">
-									 </td>
-									 <td>
-										<span class="wpscsmall description">
-								  			If you have a PayPal developers Sandbox account please use Sandbox mode, if you just have a standard PayPal account then you will want to use Live mode.
-								  		</span>
-								  	  </td>
-								  </tr>
-			   					<tr class="update_gateway">
-									<td colspan="2">
-										<div class="submit">
-											<input type="submit" value="Update »" name="updateoption">
-										</div>
-									</td>
-								</tr>
-			  
-		  					</tbody>
-		  				</table>
-	  				</form>
-				</div>
-			</div>
+<div class="wrap">
+<?php screen_icon('wp-pay-direct'); ?>
+	<h2>WP Pay Direct Settings</h2>
+	<div class="postbox">
+
+		<h3 class="wpdp_box_header">PayPal Payments Standard 2.0 Settings</h3>
+		<div class="inside">
+			<form action="" method="post">
+				<table class="form-table">
+					<tbody>
+						<tr>
+							<td>Display Name</td>
+							<td><input type="text" name="wp_pay_direct_user_defined_name"
+								value="<?php echo $wp_pay_direct_user_defined_name; ?>"><br> <small>The
+									text that people see when making a purchase.</small>
+							</td>
+						</tr>
+
+						<tr>
+							<td>Username:</td>
+							<!-- sanjay_1336725211_biz@sparxtechnologies.com -->
+							<td><input type="text" size="40" name="wp_pay_direct_business"
+								value="<?php echo $wp_pay_direct_business;?>">
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td colspan="1"><span class="wpscsmall description"> This is your
+									PayPal email address. </span>
+							</td>
+						</tr>
+
+						<tr>
+							<td>Account Type:</td>
+							<td><select name="wp_pay_direct_pay_mod">
+									<option value="https://www.paypal.com/cgi-bin/webscr"
+									<?php if( $wp_pay_direct_pay_mod === 'https://www.paypal.com/cgi-bin/webscr' ) {?>
+										selected="selected" <?php } ?>>Live Account</option>
+									<option value="https://www.sandbox.paypal.com/cgi-bin/webscr"
+									<?php if( $wp_pay_direct_pay_mod === 'https://www.sandbox.paypal.com/cgi-bin/webscr' ) {?>
+										selected="selected" <?php } ?>>Sandbox Account</option>
+							</select>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="1"></td>
+							<td><span class="wpscsmall description"> If you have a PayPal
+									developers Sandbox account please use Sandbox mode, if you just
+									have a standard PayPal account then you will want to use Live
+									mode. </span>
+							</td>
+						</tr>
+						<tr class="update_gateway">
+							<td colspan="2">
+								<div class="submit">
+									<input type="submit" value="Update »" name="updateoption">
+								</div>
+							</td>
+						</tr>
+
+					</tbody>
+				</table>
+			</form>
 		</div>
-		<?php
-						
-		}
-		
-		/*--------------------------------------------*
-		 *  WP Pay Direct Form Builder Page
-		 *---------------------------------------------*/
-		
-		function wp_pay_direct_form_page( $args ) {
-			// Settings page method
-			?>
-					<div class="wrap">
-					<?php screen_icon('wp-pay-direct'); ?>
-					<h2>WP Pay Direct Custom Form Fields</h2>
-					
-				
-	    <div class="container">
-				      <div class="row clearfix">
-				        <div class="span6">
-				          <div class="clearfix">
-				             <div class="update-form-up">
-	          	 				<input class='button-primary pay-sub' type='submit' name="update_pay_direct_form" value="<?php _e('Update Form'); ?>" />
-	          	 				<small class="wppd_load wppd_hide"></small>
-	          				 </div>
-				            <hr>
-				            <div id="build">
-				              	<form id="target" class="form-horizontal">
-				                  <div id="legend" class="component" rel="popover" title="Form Title" trigger="manual"
-				                    data-content="
+	</div>
+</div>
+									<?php
+
+	}
+
+	/*--------------------------------------------*
+	 *  WP Pay Direct Form Builder Page
+	 *---------------------------------------------*/
+
+	function wp_pay_direct_form_page( $args ) {
+		// Settings page method
+		?>
+<div class="wrap">
+<?php screen_icon('wp-pay-direct'); ?>
+	<h2>WP Pay Direct Custom Form Fields</h2>
+
+
+	<div class="container">
+		<div class="row clearfix">
+			<div class="span6">
+				<div class="clearfix">
+					<div class="update-form-up">
+						<input class='button-primary pay-sub' type='submit'
+							name="update_pay_direct_form" value="<?php _e('Update Form'); ?>" />
+						<small class="wppd_load wppd_hide"></small>
+					</div>
+					<hr>
+					<div id="build">
+						<form id="target" class="form-horizontal">
+							<div id="legend" class="component" rel="popover"
+								title="Form Title" trigger="manual"
+								data-content="
 				                    <form class='form'>
 				                      <?php  echo get_option( 'wp_pay_direct_form_builder' ); ?>
 				              	</form>
@@ -577,7 +580,76 @@ class WpPayDirectAdmin {
 					<?php
 							
 			}
+		/*--------------------------------------------*
+		 *  WP Pay Direct Payment List Page
+		 *---------------------------------------------*/
+	function wp_pay_direct_list_pyments( $args ) { ?>
+			<div class="wrap">
+   <?php screen_icon('wp-pay-direct'); ?>
+   <h2>WP Pay Direct Payment List</h2>
+   <ul class="subsubsub">
+      <li class="all"><a href="edit.php?post_type=post" class="current">All <span class="count">(1)</span></a> |</li>
+      <li class="publish"><a href="edit.php?post_status=publish&amp;post_type=post">Successful <span class="count">(1)</span></a></li>
+      <li class="publish"><a href="edit.php?post_status=publish&amp;post_type=post">Failed <span class="count">(1)</span></a></li>
+   </ul>
+   <form id="posts-filter" action="" method="get">
+      <input type="hidden" name="post_status" class="post_status_page" value="all">
+      <input type="hidden" name="post_type" class="post_type_page" value="post">
+      <input type="hidden" id="_wpnonce" name="_wpnonce" value="65e20040c1"><input type="hidden" name="_wp_http_referer" value="/wp_pay_direct/wp-admin/edit.php">	
+      <table class="wp-list-table widefat fixed payments" cellspacing="0">
+         <thead>
+            <tr>
+               <th scope="col" id="cb" class="manage-column column-cb check-column" style=""></th>
+               <th scope="col" class="manage-column" style="">Transaction ID</th>
+               <th scope="col" id="author" class="manage-column" style="">Amount</th>
+               <th scope="col" id="categories" class="manage-column" style="">Status</th>
+               <th scope="col" id="tags" class="manage-column" style="">Email</th>
+               <th scope="col" id="tags" class="manage-column" style="">Date</th>
+               <th scope="col" class="manage-column" style="">More</th>
+            </tr>
+         </thead>
+         <tfoot>
+            <tr>
+               <th scope="col" class="manage-column column-cb check-column" style=""></th>
+               <th scope="col" class="manage-column" style="">Transaction ID</th>
+               <th scope="col" id="author" class="manage-column" style="">Amount</th>
+               <th scope="col" id="categories" class="manage-column" style="">Status</th>
+               <th scope="col" id="tags" class="manage-column" style="">Email</th>
+               <th scope="col" id="tags" class="manage-column" style="">Date</th>
+               <th scope="col" class="manage-column" style="">More</th>
+            </tr>
+         </tfoot>
+         <tbody id="the-list">
+         <?php echo $this->wp_pay_direct_generate_list();?>
+         </tbody>
+      </table>
+   </form>
+   <div id="ajax-response"></div>
+   <br class="clear">
+</div>			
+<?php 	}
+
+function wp_pay_direct_generate_list(){
+	global $wpdb;
+	$list = '';
+ 	$qry = "SELECT * FROM " . $wpdb->prefix . "wppd_payment_log";
+            $rows = $wpdb->get_results($qry, ARRAY_A);
+            foreach ($rows as $row) {
+            	$list .= '<tr id="'.$row['txnid'].'" class="'.$row['txnid'].' type-payment status-'.$row['payment_status'].' format-standard hentry" valign="top"><th scope="row" class="check-column"></th>';
+            	$list .= '<td class="post-title page-title column-title"><strong>'.$row['txnid'].'</strong>';
+            	$list .= '<div class="hidden" id="inline_1"></div></td>';
+                $list .= '<td class="author"><strong>' . $row['payment_amount'] . '</strong></td>';
+                $list .= '<td class="author"><strong>' . $row['payment_status'] . '</strong></td>';
+                $list .= '<td class="author"><strong>' . $row['email'] . '</strong></td>';
+                $list .= '<td class="author"><strong>' . $row['createdtime'] . '</strong></td>';
+                $list .= '<td class="author"><strong>More Link</strong></td>';            
+                $list .= '</tr>';
+            }
+            return $list;
+        }
 	
-}
+
+
+} // end class
 global $wppd_admin;
 $wppd_admin = new WpPayDirectAdmin();

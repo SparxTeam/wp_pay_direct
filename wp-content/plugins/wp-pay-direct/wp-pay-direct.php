@@ -261,12 +261,13 @@ class WpPayDirect {
 		 * 
 		 * 	Menu Icon: Generated from http://iconizer.net/
 		 */
-		add_menu_page( 'WP Pay Direct', 'Pay Direct', 'manage_options', __FILE__, array( &$wppd_admin, 'wp_pay_direct_form_page' ), plugins_url( 'images/icons/direct-pay-icon.png', __FILE__ ) );
+		add_menu_page( 'WP Pay Direct', 'Pay Direct', 'manage_options', __FILE__, array( &$wppd_admin, 'wp_pay_direct_list_pyments' ), plugins_url( 'images/icons/direct-pay-icon.png', __FILE__ ) );
 		
 				
 		//create submenu items
-		add_submenu_page( __FILE__, 'Form Builder', 'Optional Form Fields', 'manage_options',__FILE__, array( &$wppd_admin, 'wp_pay_direct_form_page' ) );
+		add_submenu_page( __FILE__, 'Payment List', 'Payments', 'manage_options',__FILE__, array( &$wppd_admin, 'wp_pay_direct_list_pyments' ) );
 		add_submenu_page( __FILE__, 'Settings', 'Settings', 'manage_options','wp_pay_direct_settings', array( &$wppd_admin, 'wp_pay_direct_settings_page' ) );
+		add_submenu_page( __FILE__, 'Form Builder', 'Optional Form Fields', 'manage_options','wp_pay_direct_form_builder', array( &$wppd_admin, 'wp_pay_direct_form_page' ) );
 		
 			
 	
