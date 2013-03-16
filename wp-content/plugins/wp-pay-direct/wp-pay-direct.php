@@ -54,6 +54,7 @@ define('WPPD_ABSPATH', $asolutePath);
 require_once(WPPD_VIEWS_PATH.'admin.php');
 require_once(WPPD_VIEWS_PATH.'display.php');
 require_once(WPPD_VIEWS_PATH.'shortcode.php');
+require_once(WPPD_VIEWS_PATH.'wp_pay_direct_db.php');
 
 class WpPayDirect {
 	
@@ -132,6 +133,11 @@ class WpPayDirect {
 		
 		// Plugin options
 		$this->wp_pay_direct_create_options();
+		
+		// payment log table
+		
+		global $wp_pay_direct_db;		
+		$wp_pay_direct_db->create_wppd_db_table();
 		
 	} // end activate
 	
