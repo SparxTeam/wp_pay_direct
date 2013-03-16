@@ -369,13 +369,15 @@ class WpPayDirect {
 			// Form Source To Be Used On Front End
 			$form_source	=	stripslashes( $_REQUEST[ 'form_source' ] );
 			
-			//Form builder source to regenerate form fields in admin form build area
-			
-			$form_builder_source  =  stripslashes( $_REQUEST[ 'form_builder_source' ] );
-			
 			// Updates form
 			$isUpdate	=	update_option( 'wp_pay_direct_form', $form_source );
-			if( $isUpdate ){
+			
+			//Form builder source to regenerate form fields in admin form build area
+			$form_builder_source  =  stripslashes( $_REQUEST[ 'form_builder_source' ] );
+				
+			// Updates form source
+			$formBuildertUpdate  =  update_option( 'wp_pay_direct_form_builder', $form_builder_source );
+			if( $formUpdate &&  $formBuildertUpdate){
 				echo "true";
 			} else {
 				echo "false";
