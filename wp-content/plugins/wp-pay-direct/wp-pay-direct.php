@@ -366,8 +366,12 @@ class WpPayDirect {
 	function wppd_update_form(){
 		
 		if( isset( $_REQUEST ) ){
-			
+			// Form Source To Be Used On Front End
 			$form_source	=	stripslashes( $_REQUEST[ 'form_source' ] );
+			
+			//Form builder source to regenerate form fields in admin form build area
+			
+			$form_builder_source  =  stripslashes( $_REQUEST[ 'form_builder_source' ] );
 			
 			// Updates form
 			$isUpdate	=	update_option( 'wp_pay_direct_form', $form_source );
@@ -438,6 +442,9 @@ class WpPayDirect {
 						);
 			// Form
 			add_option( 'wp_pay_direct_form', '');
+			
+			// Form Builder
+		     add_option('wp_pay_direct_form_builder','<div id="legend" class="component" rel="popover" title="Form Title" trigger="manual" data-content="<form class=\'form\'><div class=\'controls\'>   <label class=\'control-label\'>Title</label><input class=\'input-large\' type=\'text\' name=\'title\' id=\'text\'><hr/><button class=\'btn btn-info\'>Save</button><button class=\'btn btn-danger\'>Cancel</button></div></form>"><legend class="valtype" data-valtype="text">Form Name</legend></div>');
 	}
 	
 	
@@ -564,15 +571,7 @@ class WpPayDirect {
 				                  <div id="legend" class="component" rel="popover" title="Form Title" trigger="manual"
 				                    data-content="
 				                    <form class='form'>
-				                      <div class='controls'>
-				                        <label class='control-label'>Title</label> <input class='input-large' type='text' name='title' id='text'>
-				                        <hr/>
-				                        <button class='btn btn-info'>Save</button><button class='btn btn-danger'>Cancel</button>
-				                      </div>
-				                    </form>">
-				                    <legend class="valtype" data-valtype="text">Form Name</legend>
-				                  </div>
-				                  <?php  echo get_option( 'wp_pay_direct_form' ); ?>
+				                      <?php  echo get_option( 'wp_pay_direct_form_builder' ); ?>
 				              	</form>
 				            </div>
 				          </div>
