@@ -298,7 +298,7 @@ class WpPayDirect {
 				
 			// Updates form source
 			$formBuildertUpdate  =  update_option( 'wp_pay_direct_form_builder', $form_builder_source );
-			if( $formUpdate &&  $formBuildertUpdate){
+			if( $isUpdate &&  $formBuildertUpdate){
 				echo "true";
 			} else {
 				echo "false";
