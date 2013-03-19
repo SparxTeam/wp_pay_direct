@@ -33,6 +33,8 @@ class WpPayDirectAdmin {
 		$wp_pay_direct_user_defined_name	=	$wppd_options[ 'wp_pay_direct_user_defined_name' ]  ? $wppd_options[ 'wp_pay_direct_user_defined_name' ] : '';
 		$wp_pay_direct_business				=	$wppd_options[ 'wp_pay_direct_business' ]  			? $wppd_options[ 'wp_pay_direct_business' ] 		 : '';
 		$wp_pay_direct_pay_mod				=	$wppd_options[ 'wp_pay_direct_pay_mod' ] 			? $wppd_options[ 'wp_pay_direct_pay_mod' ] 			 : '';
+		$wp_pay_direct_pay_mod				=	$wppd_options[ 'wp_pay_direct_success_url' ] 		? $wppd_options[ 'wp_pay_direct_success_url' ] 			 : '';
+		$wp_pay_direct_pay_mod				=	$wppd_options[ 'wp_pay_direct_fail_url' ] 			? $wppd_options[ 'wp_pay_direct_fail_url' ] 			 : '';
 
 		?>
 <div class="wrap">
@@ -79,6 +81,20 @@ class WpPayDirectAdmin {
 							</select>
 							</td>
 						</tr>
+						
+						<tr>
+							<td>Account Type:</td>
+							<td><select name="wp_pay_direct_pay_mod">
+									<option value="https://www.paypal.com/cgi-bin/webscr"
+									<?php if( $wp_pay_direct_pay_mod === 'https://www.paypal.com/cgi-bin/webscr' ) {?>
+										selected="selected" <?php } ?>>Live Account</option>
+									<option value="https://www.sandbox.paypal.com/cgi-bin/webscr"
+									<?php if( $wp_pay_direct_pay_mod === 'https://www.sandbox.paypal.com/cgi-bin/webscr' ) {?>
+										selected="selected" <?php } ?>>Sandbox Account</option>
+							</select>
+							</td>
+						</tr>
+						
 						<tr>
 							<td colspan="1"></td>
 							<td><span class="wpscsmall description"> If you have a PayPal

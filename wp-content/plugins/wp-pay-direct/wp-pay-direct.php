@@ -34,21 +34,21 @@ License:
  * https://github.com/tommcfarlin/WordPress-Plugin-Boilerplate
  * 
  */
-if (!defined('WP_CONTENT_DIR'))
-    define('WP_CONTENT_DIR', ABSPATH . 'wp-content');
+if ( !defined( 'WP_CONTENT_DIR') )
+    define( 'WP_CONTENT_DIR' , ABSPATH . 'wp-content' );
 
-if (!defined('DIRECTORY_SEPARATOR')) {
-    if (strpos(php_uname('s'), 'Win') !== false)
-        define('DIRECTORY_SEPARATOR', '\\');
+if ( !defined( 'DIRECTORY_SEPARATOR' ) ) {
+    if ( strpos( php_uname('s'), 'Win' ) !== false)
+        define( 'DIRECTORY_SEPARATOR', '\\' );
     else
-        define('DIRECTORY_SEPARATOR', '/');
+        define( 'DIRECTORY_SEPARATOR', '/' );
 }
 $pluginPath = ABSPATH . PLUGINDIR . DIRECTORY_SEPARATOR . "wp-pay-direct";
-define('WPPD_PATH', $pluginPath);
-$viewsPath = $pluginPath . DIRECTORY_SEPARATOR. 'views'.DIRECTORY_SEPARATOR;
-define('WPPD_VIEWS_PATH', $viewsPath);
+define( 'WPPD_PATH', $pluginPath );
+$viewsPath = $pluginPath . DIRECTORY_SEPARATOR . 'views'. DIRECTORY_SEPARATOR;
+define( 'WPPD_VIEWS_PATH', $viewsPath );
 $asolutePath = dirname(__FILE__) . DIRECTORY_SEPARATOR;
-define('WPPD_ABSPATH', $asolutePath);
+define( 'WPPD_ABSPATH', $asolutePath );
 
 
 require_once(WPPD_VIEWS_PATH.'admin.php');
@@ -250,7 +250,6 @@ class WpPayDirect {
 	 *		  Action Reference:  http://codex.wordpress.org/Plugin_API/Action_Reference
 	 *
 	 */
-	
 	function create_wp_pay_direct_admin_menu() {
 		global $wppd_admin; // object of WpPayDirectAdmin class /views/admin.php
 		/**
@@ -361,7 +360,9 @@ class WpPayDirect {
 			//	Settings page
 			add_option( 'wp_pay_direct_options', array(	'wp_pay_direct_user_defined_name' => '',
 														'wp_pay_direct_business' => '',
-														'wp_pay_direct_pay_mod' => 'https://www.sandbox.paypal.com/cgi-bin/webscr')
+														'wp_pay_direct_pay_mod' => 'https://www.sandbox.paypal.com/cgi-bin/webscr',
+														'wp_pay_direct_success_url' => '',
+														'wp_pay_direct_fail_url' => '' )
 						);
 			// Form
 			add_option( 'wp_pay_direct_form', '');

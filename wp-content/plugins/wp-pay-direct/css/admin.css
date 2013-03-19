@@ -67,4 +67,5 @@
       .wppd_hide{
       	display:none;
       }
+      .form-horizontal .control-label.label-required {border: 1px solid red; }
 	

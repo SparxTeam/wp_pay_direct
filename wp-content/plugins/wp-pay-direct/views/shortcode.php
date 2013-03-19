@@ -1,12 +1,39 @@
 <?php
 class WpPayDirectShortcode {
 	
+	/*--------------------------------------------*
+	 * 	generating Secure Code for transacion
+	 *--------------------------------------------*/
+	function generateSecureCode(){
+		
+		list( $usec, $sec ) = explode( ' ', microtime() );
+  		$seed = (float) $sec + ( (float) $usec * 100000 );
+  		
+  		srand( $seed );
+		$randval = rand();
+		
+		return $randval;
+  	
+	}
 	
 	/*--------------------------------------------*
 	 * Plugin's Short code handler 
 	 *---------------------------------------------*/
 	
 	function render_wp_pay_direct_shortcode( $atts ) {
+		
+	/**
+	  *  Get "Custom form fields" saved in DB
+	  */
+		
+	  $wppd_custom_form = trim( get_option( 'wp_pay_direct_form' ) );
+	  
+	  $wp_pay_direct_options = get_option( 'wp_pay_direct_options' );
+	  $wp_pay_direct_business_name = $wp_pay_direct_options[ 'wp_pay_direct_business' ];
+	  $wppd_form_action 	= 	$wp_pay_direct_options[ 'wp_pay_direct_pay_mod' ];
+	  
+	 
+	  
 	    
 		$output_form = '';
 		
@@ -19,12 +46,7 @@ class WpPayDirectShortcode {
 	  
 	 
 			  
-	 /**
-	  *  Get "Custom form fields" saved in DB
-	  */
-		
-	  $wppd_custom_form = trim( get_option( 'wp_pay_direct_form' ) );
-	  
+	   
 	  /* Strip "<form>" tag from the string */
 
 	  $wppd_custom_form = preg_replace( '/<form(.*?)>/s', '', $wppd_custom_form ); // Remove opening "<form>" tag
@@ -35,14 +57,13 @@ class WpPayDirectShortcode {
 	   */
 	  
 	  $wppd_custom_paypal_fields = '';
-	  $wp_pay_direct_options = get_option( 'wp_pay_direct_options' );
-	  $wp_pay_direct_business_name = $wp_pay_direct_options[ 'wp_pay_direct_business' ];
+	
 	  
 	  $wppd_custom_paypal_fields 	.=		'<input type="hidden" name="cmd" value="_ext-enter">';
 	  $wppd_custom_paypal_fields 	.=		'<input type="hidden" name="redirect_cmd" value="_xclick">';
 	  $wppd_custom_paypal_fields 	.=		'<input type="hidden" name="business" value="'.$wp_pay_direct_business_name.'">';
 	  $wppd_custom_paypal_fields 	.=		'<input type="hidden" name="item_name" value="Direct Payment">';
-	  $wppd_custom_paypal_fields 	.=		'<input type="hidden" name="amount" value="">';
+	  $wppd_custom_paypal_fields 	.=		'<input type="hidden" name="amount" id="amount" value="">'; 
 	  $wppd_custom_paypal_fields 	.=		'<input type="hidden" name="quantity" value="1">';
 	  $wppd_custom_paypal_fields 	.=		'<input type="hidden" name="currency_code" value="USD">';
 	  $wppd_custom_paypal_fields 	.=		'<input type="hidden" name="rm" value="2" />';
@@ -50,7 +71,7 @@ class WpPayDirectShortcode {
 	  $wppd_custom_paypal_fields 	.=		'<input type="hidden" name="return" value="<success>">';
 	  $wppd_custom_paypal_fields 	.=		'<input type="hidden" name="notify_url" value="<ipn>">';
 	  $wppd_custom_paypal_fields 	.=		'<input type="hidden" name="cancel_return" value="<failed>">';
-	  $wppd_custom_paypal_fields 	.=		'<input type="hidden" name="receiver_email" value="">';
+	  
 	  
 	  $wppd_custom_paypal_fields 	.=		'<div class="control-group component">
 											  <label class="control-label">Amount (you need to pay)</label>
@@ -85,14 +106,14 @@ class WpPayDirectShortcode {
 	   * 	Form Attributes
 	   */
 	   
-	  $wppd_form_action 	= 	$wp_pay_direct_options[ 'wp_pay_direct_pay_mod' ];
+	  
 	  $wppd_form_attributes = 	'<form action="'.$wppd_form_action.'" method="post" class="wppd-form">';
 	  
 	  $wppd_form_close 		 =	'<div class="control-group component">
 		  										<label class="control-label">&nbsp;</label>
 												  <div class="controls">
 													  <div class="input-prepend">
-													  	  <input type="Submit" name="Submit" value="Submit" />
+													  	  <input type="Submit" name="payDirectSubmit" value="Submit" />
 													  </div>
 												  </div>
 		  

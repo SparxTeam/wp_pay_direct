@@ -33,7 +33,7 @@
 		$(".pay-sub").on('click', function() {
 
 			var form_source = genrateSource();
-			if (form_source) {
+			if (form_source != false) {
 				var form_builder_source = $('#target').html();
 				$.ajax({
 					type : "post",

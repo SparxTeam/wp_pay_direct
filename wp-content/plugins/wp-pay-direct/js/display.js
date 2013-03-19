@@ -105,6 +105,8 @@ function calculateAmount(){
 		tax = format_number( tax );
 		jQuery( '#payFees' ).html( tax );
 		jQuery( '#feesTotal' ).html( totalamout );
+		jQuery( '#amount' ).val( totalamout );
+		
 		
 	}
 	
